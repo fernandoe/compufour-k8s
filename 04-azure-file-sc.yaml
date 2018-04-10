@@ -1,8 +1,7 @@
-kind: StorageClass
 apiVersion: storage.k8s.io/v1
+kind: StorageClass
 metadata:
   name: compufourstorage
-  namespace: compufour
 provisioner: kubernetes.io/azure-file
 parameters:
   storageAccount: compufourstorage
