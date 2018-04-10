@@ -1,0 +1,25 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: firebird
+  namespace: compufour
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      containers:
+      - name: firebird
+        image: jacobalberty/firebird:2.5.8-sc
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 3050
+        volumeMounts:
+        - mountPath: "/mnt/firebird"
+          name: volume
+      volumes:
+        - name: volume
+          persistentVolumeClaim:
+            claimName: compufourstorage
